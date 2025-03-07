@@ -1,0 +1,43 @@
+.p-menubar {
+    padding: 0.75rem 2rem;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    border: none;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover {
+    background: #f0f2f5;
+    transform: translateY(-1px);
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-icon {
+    margin-right: 0.75rem;
+    color: #666;
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text {
+    color: #333;
+    font-weight: 500;
+}
+
+.p-menubar .p-menubar-end {
+    padding: 0 1rem;
+}
+
+.p-menubar .p-button.p-button-danger.p-button-text {
+    transition: all 0.2s ease;
+}
+
+.p-menubar .p-button.p-button-danger.p-button-text:hover {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}

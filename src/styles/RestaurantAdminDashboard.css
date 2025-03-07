@@ -1,0 +1,88 @@
+/* Estilos CSS atualizados */
+.dashboard-container {
+    padding: 2rem;
+    margin-top: 1rem;
+}
+
+.dashboard-header {
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.dashboard-title {
+    color: #1e88e5;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.status-indicator {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.dashboard-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 15px !important;
+    overflow: hidden;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    height: 300px; /* Fixed height for cards */
+    position: relative; /* For absolute positioning of button */
+}
+
+.dashboard-card p {
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    max-height: 4.5em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.p-button.p-button-rounded {
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    position: absolute;
+    bottom: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard-container {
+        padding: 1rem;
+    }
+
+    .dashboard-title {
+        font-size: 2rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}

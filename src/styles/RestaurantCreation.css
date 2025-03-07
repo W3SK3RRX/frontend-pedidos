@@ -1,0 +1,75 @@
+.restaurant-creation-container {
+    min-height: 100vh;
+    background: #f8f9fa;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.creation-title {
+    color: #1e88e5;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+.stepper-container {
+    width: 80%;
+    max-width: 1200px;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-field.full-width {
+    grid-column: span 2;
+}
+
+.form-field label {
+    font-weight: 600;
+    color: #344054;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+    gap: 1rem; /* Added gap between buttons */
+}
+
+.file-upload-container {
+    border: 2px dashed #1e88e5;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .stepper-container {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .form-section {
+        grid-template-columns: 1fr;
+    }
+
+    .form-field.full-width {
+        grid-column: span 1;
+    }
+}
