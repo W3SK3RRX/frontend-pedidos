@@ -3,20 +3,50 @@
     padding: 2rem;
     margin-top: 1rem;
 }
+.disabled-card {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 
+.disabled-card .card-content {
+    filter: grayscale(1);
+}
+.dashboard-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dashboard-title {
+    margin: 0;
+    text-align: center;
+}
+.p-button-sm {
+    font-size: 0.875rem;
+    padding: 0.4rem 0.8rem;
+}
 .dashboard-header {
     margin-bottom: 2rem;
     text-align: center;
     position: relative;
 }
-
 .dashboard-title {
     color: #1e88e5;
     font-size: 2.5rem;
     margin-bottom: 1rem;
     font-weight: 600;
 }
-
 .status-indicator {
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -25,7 +55,6 @@
     font-weight: bold;
     margin-top: 0.5rem;
 }
-
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -33,18 +62,15 @@
     max-width: 1400px;
     margin: 0 auto;
 }
-
 .dashboard-card {
     transition: transform 0.2s, box-shadow 0.2s;
     border-radius: 15px !important;
     overflow: hidden;
 }
-
 .dashboard-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
 }
-
 .card-content {
     display: flex;
     flex-direction: column;
@@ -54,7 +80,6 @@
     height: 300px; /* Fixed height for cards */
     position: relative; /* For absolute positioning of button */
 }
-
 .dashboard-card p {
     color: #666;
     margin-bottom: 2rem;
@@ -65,24 +90,20 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
-
 .p-button.p-button-rounded {
     padding: 0.75rem 1.5rem;
     font-weight: 600;
     position: absolute;
     bottom: 1.5rem;
 }
-
 @media screen and (max-width: 768px) {
     .dashboard-container {
         padding: 1rem;
     }
-
-    .dashboard-title {
+.dashboard-title {
         font-size: 2rem;
     }
-
-    .dashboard-grid {
+.dashboard-grid {
         grid-template-columns: 1fr;
     }
 }
