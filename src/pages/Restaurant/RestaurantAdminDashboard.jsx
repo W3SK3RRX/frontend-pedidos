@@ -19,21 +19,24 @@ export default function RestaurantAdminDashboard() {
             return;
         }
 
-        // Check if user has a restaurant
+        // Verifica se o usuário tem restaurante cadastrado
         axios.get('http://localhost:8000/api/restaurants/my-restaurants/', {
             headers: { 'Authorization': `Bearer ${token}` }
         })
-        .then(response => {
-            setHasRestaurant(response.data.length > 0);
-            if (response.data.length > 0) {
-                setRestaurantStatus(response.data[0].status);
-            }
-        })
-        .catch(error => {
-            console.error("Erro ao verificar restaurante:", error);
-            setHasRestaurant(false);
-        });
+            .then(response => {
+                if (response.data.length > 0) {
+                    setHasRestaurant(true);
+                    setRestaurantStatus(response.data[0].status);
+                } else {
+                    setHasRestaurant(false);
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao verificar restaurante:", error);
+                setHasRestaurant(false);
+            });
     }, [navigate]);
+
 
     const statusColors = {
         "Ativo": "#28a745",
@@ -76,10 +79,10 @@ export default function RestaurantAdminDashboard() {
                     <div className="header-content">
                         <h1 className="dashboard-title">Painel Administrativo</h1>
                         {!hasRestaurant && (
-                            <Button 
-                                label="Cadastrar Restaurante" 
+                            <Button
+                                label="Cadastrar Restaurante"
                                 icon="pi pi-plus"
-                                className="p-button-success p-button-sm" 
+                                className="p-button-success p-button-sm"
                                 onClick={() => navigate('/restaurant/create')}
                             />
                         )}
@@ -90,7 +93,7 @@ export default function RestaurantAdminDashboard() {
                         </div>
                     )}
                 </div>
-                
+
                 <div className="dashboard-grid">
                     {cardData.map((card, index) => (
                         <Card key={index} className={`dashboard-card ${!hasRestaurant ? 'disabled-card' : ''}`}>
@@ -98,10 +101,10 @@ export default function RestaurantAdminDashboard() {
                                 {card.icon}
                                 <h2>{card.title}</h2>
                                 <p>{card.description}</p>
-                                <Button 
-                                    label="Acessar" 
+                                <Button
+                                    label="Acessar"
                                     icon="pi pi-arrow-right"
-                                    className="p-button-rounded p-button-primary" 
+                                    className="p-button-rounded p-button-primary"
                                     onClick={() => navigate(card.path)}
                                     disabled={!hasRestaurant}
                                 />
