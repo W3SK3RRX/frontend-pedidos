@@ -39,23 +39,23 @@ export default function RestaurantAdminDashboard() {
 
 
     const statusColors = {
-        "Ativo": "#28a745",
-        "Aguardando aprovação": "#ffc107",
-        "Suspenso": "#dc3545"
+        "ativo": "#28a745",
+        "pendente": "#ffc107",
+        "rejeitado": "#dc3545"
     };
 
     const cardData = [
+        {
+            title: 'Página do restaurante',
+            description: 'Atualize informações e imagens da página do restaurante.',
+            icon: <FaStore className="dashboard-icon" />,
+            path: '/admin/restaurante'
+        },
         {
             title: 'Gerenciar Cardápio',
             description: 'Adicione, edite ou remova itens do menu do seu restaurante.',
             icon: <FaUtensils className="dashboard-icon" />,
             path: '/admin/cardapio'
-        },
-        {
-            title: 'Alterar Página',
-            description: 'Atualize informações e imagens da página do restaurante.',
-            icon: <FaStore className="dashboard-icon" />,
-            path: '/admin/restaurante'
         },
         {
             title: 'Gerenciar Pedidos',
@@ -70,6 +70,8 @@ export default function RestaurantAdminDashboard() {
             path: '/admin/dashboard'
         }
     ];
+    
+    const isRestaurantActive = hasRestaurant && restaurantStatus === "ativo";
 
     return (
         <div>
@@ -88,15 +90,22 @@ export default function RestaurantAdminDashboard() {
                         )}
                     </div>
                     {hasRestaurant && (
-                        <div className="status-indicator" style={{ backgroundColor: statusColors[restaurantStatus] }}>
-                            {restaurantStatus.charAt(0).toUpperCase() + restaurantStatus.slice(1)}
-                        </div>
+                        <>
+                            <div className="status-indicator" style={{ backgroundColor: statusColors[restaurantStatus] }}>
+                                {restaurantStatus.charAt(0).toUpperCase() + restaurantStatus.slice(1)}
+                            </div>
+                            {restaurantStatus === "pendente" && (
+                                <div className="pending-message">
+                                    Seu restaurante está em análise. Aguarde a aprovação para acessar todas as funcionalidades.
+                                </div>
+                            )}
+                        </>
                     )}
                 </div>
 
                 <div className="dashboard-grid">
                     {cardData.map((card, index) => (
-                        <Card key={index} className={`dashboard-card ${!hasRestaurant ? 'disabled-card' : ''}`}>
+                        <Card key={index} className={`dashboard-card ${!isRestaurantActive ? 'disabled-card' : ''}`}>
                             <div className="card-content">
                                 {card.icon}
                                 <h2>{card.title}</h2>
@@ -106,7 +115,7 @@ export default function RestaurantAdminDashboard() {
                                     icon="pi pi-arrow-right"
                                     className="p-button-rounded p-button-primary"
                                     onClick={() => navigate(card.path)}
-                                    disabled={!hasRestaurant}
+                                    disabled={!isRestaurantActive}
                                 />
                             </div>
                         </Card>
