@@ -49,7 +49,7 @@ export default function RestaurantAdminDashboard() {
             title: 'Página do restaurante',
             description: 'Atualize informações e imagens da página do restaurante.',
             icon: <FaStore className="dashboard-icon" />,
-            path: '/admin/restaurante'
+            path: '/restaurant/profile'  // Updated path
         },
         {
             title: 'Gerenciar Cardápio',

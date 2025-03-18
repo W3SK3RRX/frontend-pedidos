@@ -13,6 +13,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import RestaurantPage from "./pages/Restaurant/RestaurantPage";
 import RestaurantCreation from "./pages/Restaurant/RestaurantCreation";
 import RestaurantAdminDashboard from "./pages/Restaurant/RestaurantAdminDashboard";
+import RestaurantProfile from "./pages/Restaurant/RestaurantProfile";
 
 import CartPage from "./pages/Cart/CartPage";
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="/restaurant" element={<RestaurantPage />} />
           <Route path="/restaurant/create" element={<RestaurantCreation />} />
           <Route path="/restaurant/dashboard" element={<RestaurantAdminDashboard />} />
+          <Route path="/restaurant/profile" element={<RestaurantProfile />} />
 
           <Route path="/cart" element={<CartPage />} />
       </Routes>
