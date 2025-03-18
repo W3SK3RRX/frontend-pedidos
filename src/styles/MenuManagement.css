@@ -1,0 +1,218 @@
+.menu-management-container {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.header h1 {
+    margin: 0;
+    color: #333;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.menu-table {
+    margin-bottom: 2rem;
+    min-width: 100%;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .menu-management-container {
+        padding: 0.5rem;
+    }
+
+    .p-datatable .p-datatable-tbody > tr > td {
+        padding: 0.5rem;
+    }
+
+    .action-buttons {
+        flex-direction: row;
+        gap: 0.25rem;
+    }
+
+    .action-buttons .p-button {
+        width: 1.8rem !important;
+        height: 1.8rem !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .p-button.p-button-sm {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    height: 100%;
+}
+
+.action-buttons .p-button {
+    width: 3rem !important;
+    height: 3rem !important;
+    min-width: 3rem !important;
+    min-height: 3rem !important;
+    margin: 0 !important;
+    border-radius: 8px !important;
+}
+
+.action-buttons .p-button .pi {
+    font-size: 1.2rem;
+}
+
+/* Adjust action column width */
+.p-datatable .p-datatable-thead > tr > th:last-child,
+.p-datatable .p-datatable-tbody > tr > td:last-child {
+    text-align: center;
+    width: 12rem;
+    min-width: 12rem;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    vertical-align: middle !important;
+    padding: 0.5rem !important;
+    height: 100% !important;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+    height: 4rem;
+}
+
+.p-datatable .p-column-header-content {
+    justify-content: center;
+}
+
+.field {
+    margin-bottom: 1rem;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.table-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.table-footer .p-button {
+    width: 2rem;
+    height: 2rem;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    vertical-align: middle;
+    padding: 0.5rem;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+    height: 4rem;
+}
+
+.p-datatable .p-column-header-content {
+    justify-content: center;
+}
+
+.field {
+    margin-bottom: 1rem;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.p-dialog .p-dialog-content {
+    padding: 2rem;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+    text-align: left;
+    padding: 1rem;
+    background-color: #f8f9fa;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    text-align: left;
+    padding: 1rem;
+}
+
+.dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.dialog-footer .p-button {
+    min-width: 6rem;
+}
+
+/* Align all content except actions column */
+.p-datatable .p-datatable-thead > tr > th:not(:last-child),
+.p-datatable .p-datatable-tbody > tr > td:not(:last-child) {
+    padding-left: 1.5rem;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+    height: 4rem;
+}
+
+.p-datatable .p-column-header-content {
+    justify-content: flex-start;
+}
+
+/* Keep actions column centered */
+.p-datatable .p-datatable-thead > tr > th:last-child,
+.p-datatable .p-datatable-tbody > tr > td:last-child {
+    text-align: center;
+}
+
+.confirmation-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.confirmation-content i {
+    font-size: 2rem;
+    color: #ff9800;
+}
+
+.confirmation-content span {
+    font-size: 1.1rem;
+}
