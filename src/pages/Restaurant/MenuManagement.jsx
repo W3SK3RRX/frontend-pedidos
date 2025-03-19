@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
@@ -13,6 +14,7 @@ import '../../styles/MenuManagement.css';
 import axios from 'axios';
 
 export default function MenuManagement() {
+    const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [displayDialog, setDisplayDialog] = useState(false);
@@ -22,9 +24,14 @@ export default function MenuManagement() {
     const [newCategory, setNewCategory] = useState('');
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/login');
+            return;
+        }
         fetchCategories();
         fetchProducts();
-    }, []);
+    }, [navigate]);
 
     const fetchCategories = async () => {
         try {
