@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Stepper } from 'primereact/stepper';
 import { StepperPanel } from 'primereact/stepperpanel';
 import { Button } from 'primereact/button';
@@ -27,13 +27,35 @@ export default function RestaurantCreation() {
         image: null
     });
 
-    const categories = [
-        { label: 'Fast Food', value: 'fast_food' },
-        { label: 'Italiana', value: 'italiana' },
-        { label: 'Japonesa', value: 'japonesa' },
-        { label: 'Brasileira', value: 'brasileira' },
-        { label: 'Árabe', value: 'arabe' }
-    ];
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    const fetchCategories = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get('http://localhost:8000/api/restaurants/restaurant-categories/', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const formattedCategories = response.data.map(category => ({
+                label: category.name,
+                value: category.id
+            }));
+            setCategories(formattedCategories);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        }
+    };
+
+    // Remove the hardcoded categories array and update the Dropdown component
+    <Dropdown
+        value={restaurantData.category}
+        options={categories}
+        onChange={(e) => handleChange(e, "category")}
+        placeholder="Selecione uma categoria"
+    />
 
     const handleChange = (e, field) => {
         setRestaurantData({ ...restaurantData, [field]: e.target.value });
@@ -51,40 +73,28 @@ export default function RestaurantCreation() {
                 return;
             }
 
-            // Create the request data object matching the serializer structure
-            const requestData = {
-                name: restaurantData.name,
-                description: restaurantData.description,
-                category: restaurantData.category,
-                phone: restaurantData.phone.replace(/\D/g, ''), // Remove non-digits from phone
-                address: {
-                    cep: restaurantData.cep.replace(/\D/g, ''), // Remove non-digits from CEP
-                    city: restaurantData.city,
-                    neighborhood: restaurantData.neighborhood,
-                    street: restaurantData.street,
-                    number: restaurantData.number
-                }
-            };
-
-            // Create FormData
-            const formData = new FormData();
+            // Create the request data object matching the API structure
+            const requestData = new FormData();
             
-            // Add each field individually to FormData
-            Object.keys(requestData).forEach(key => {
-                if (key === 'address') {
-                    Object.keys(requestData.address).forEach(addressKey => {
-                        formData.append(`address.${addressKey}`, requestData.address[addressKey]);
-                    });
-                } else {
-                    formData.append(key, requestData[key]);
-                }
-            });
+            // Add basic restaurant information
+            requestData.append('name', restaurantData.name);
+            requestData.append('description', restaurantData.description);
+            requestData.append('category_id', restaurantData.category);
+            requestData.append('phone', restaurantData.phone.replace(/\D/g, ''));
             
+            // Add address information
+            requestData.append('address.city', restaurantData.city);
+            requestData.append('address.neighborhood', restaurantData.neighborhood);
+            requestData.append('address.street', restaurantData.street);
+            requestData.append('address.number', restaurantData.number);
+            requestData.append('address.cep', restaurantData.cep.replace(/\D/g, ''));
+            
+            // Add image if it exists
             if (restaurantData.image) {
-                formData.append('image', restaurantData.image);
+                requestData.append('image', restaurantData.image);
             }
 
-            const response = await axios.post('http://localhost:8000/api/restaurants/create/', formData, {
+            const response = await axios.post('http://localhost:8000/api/restaurants/create/', requestData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data'
@@ -95,6 +105,17 @@ export default function RestaurantCreation() {
             navigate('/restaurant/dashboard');
         } catch (error) {
             console.error('❌ Erro ao cadastrar restaurante:', error.response ? error.response.data : error);
+            // Add better error handling
+            if (error.response && error.response.data) {
+                const errors = error.response.data;
+                let errorMessage = 'Erros encontrados:\n';
+                Object.keys(errors).forEach(key => {
+                    errorMessage += `${key}: ${errors[key].join(', ')}\n`;
+                });
+                alert(errorMessage);
+            } else {
+                alert('Erro ao cadastrar restaurante. Por favor, tente novamente.');
+            }
         }
     };
 

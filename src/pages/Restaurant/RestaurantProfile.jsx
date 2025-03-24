@@ -25,17 +25,81 @@ export default function RestaurantProfile() {
         },
         image: null
     });
-
     const [loading, setLoading] = useState(true);
     const [previewImage, setPreviewImage] = useState(null);
+    const [categories, setCategories] = useState([]);
 
-    const categories = [
-        { label: 'Fast Food', value: 'fast_food' },
-        { label: 'Italiana', value: 'italiana' },
-        { label: 'Japonesa', value: 'japonesa' },
-        { label: 'Brasileira', value: 'brasileira' },
-        { label: 'Árabe', value: 'arabe' }
-    ];
+    // Combine both data fetching operations into a single useEffect
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    alert('Você precisa estar logado para acessar esta página');
+                    return;
+                }
+
+                // Fetch categories
+                const categoriesResponse = await axios.get('http://localhost:8000/api/restaurants/restaurant-categories/', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const formattedCategories = categoriesResponse.data.map(category => ({
+                    label: category.name,
+                    value: category.id
+                }));
+                setCategories(formattedCategories);
+
+                // Fetch restaurant data
+                const restaurantResponse = await axios.get('http://localhost:8000/api/restaurants/restaurants/', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                // In the fetchData function, update how we set the restaurant data
+                if (restaurantResponse.data.length > 0) {
+                    const restaurantData = restaurantResponse.data[0];
+                    setRestaurant({
+                        ...restaurantData,
+                        // If category exists, use its ID, otherwise use empty string
+                        category: restaurantData.category ? restaurantData.category : '',
+                        address: restaurantData.address || {
+                            street: '',
+                            number: '',
+                            neighborhood: '',
+                            city: '',
+                            cep: ''
+                        }
+                    });
+                    if (restaurantData.image) {
+                        setPreviewImage(restaurantData.image);
+                    }
+                }
+
+                // Update handleSubmit data object
+                const data = {
+                    name: restaurant.name,
+                    description: restaurant.description,
+                    category_id: restaurant.category, // Change to category_id to match API
+                    phone: restaurant.phone,
+                    address: {
+                        street: restaurant.address.street,
+                        number: restaurant.address.number,
+                        neighborhood: restaurant.address.neighborhood,
+                        city: restaurant.address.city,
+                        cep: restaurant.address.cep
+                    }
+                };
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error.response?.data || error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    // Remove the second useEffect that was causing the error
+
 
     useEffect(() => {
         const fetchRestaurantData = async () => {
@@ -130,7 +194,7 @@ export default function RestaurantProfile() {
             const data = {
                 name: restaurant.name,
                 description: restaurant.description,
-                category: restaurant.category,
+                category_id: restaurant.category, // Changed from category to category_id
                 phone: restaurant.phone,
                 address: {
                     street: restaurant.address.street,

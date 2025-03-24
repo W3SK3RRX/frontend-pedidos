@@ -36,7 +36,7 @@ export default function MenuManagement() {
     const fetchCategories = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:8000/api/restaurants/categories/', {
+            const response = await axios.get('http://localhost:8000/api/restaurants/menu-categories/', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setCategories(response.data.map(category => ({ label: category.name, value: category.id })));

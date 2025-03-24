@@ -1,0 +1,209 @@
+.hours-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hours-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.hours-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.form-group .p-calendar,
+.form-group .p-dropdown {
+    width: 100%;
+}
+
+@media screen and (max-width: 640px) {
+    .hours-form {
+        gap: 1rem;
+    }
+
+    .p-dialog .p-dialog-content {
+        padding: 1rem !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hours-container {
+        padding: 10px;
+    }
+
+    .hours-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hours-header button {
+        width: 100%;
+    }
+
+    .p-dialog {
+        width: 90vw !important;
+        max-height: 90vh !important;
+    }
+
+    .p-datatable .p-datatable-tbody > tr > td {
+        padding: 0.5rem;
+    }
+
+    .form-group .p-calendar,
+    .form-group .p-dropdown {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .p-datatable .p-datatable-thead > tr > th,
+    .p-datatable .p-datatable-tbody > tr > td {
+        padding: 0.3rem;
+        font-size: 0.9rem;
+    }
+
+    .hours-container h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.action-buttons {
+    width: 20px;
+    justify-content: center;
+    gap: 0.5rem;
+    
+    align-items: center;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.5rem;
+    vertical-align: middle;
+}
+
+.p-datatable .p-button.p-button-sm {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+}
+
+.p-datatable .p-button.p-button-sm .p-button-icon {
+    font-size: 0.875rem;
+}
+
+@media screen and (max-width: 960px) {
+    .p-datatable-tbody > tr > td > div {
+        justify-content: flex-start !important;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .action-buttons {
+        justify-content: flex-start;
+        padding: 0.5rem 0;
+    }
+}
+
+.p-datatable td {
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 960px) {
+    .p-datatable .p-button.p-button-outlined {
+        margin-right: 1rem;
+        margin-bottom: 0;
+    }
+}
+
+.p-datatable .p-button.p-button-outlined .p-button-icon {
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 960px) {
+    .p-datatable .p-button.p-button-outlined {
+        padding: 0.2rem;
+        width: 0.8rem;
+        height: 1.2rem;
+        margin-right: 0.2rem;
+    }
+
+    .p-datatable .p-button.p-button-outlined .p-button-icon {
+        font-size: 0.6rem;
+    }
+
+    /* Adjust column width for actions */
+    .p-datatable .p-column-header:last-child,
+    .p-datatable .p-datatable-tbody > tr > td:last-child {
+        width: 3rem;
+        min-width: 3rem;
+    }
+
+    .action-buttons {
+        width: 15px;
+        gap: 0.2rem;
+    }
+    .p-datatable .p-button.p-button-sm {
+        width: 1.2rem;
+        height: 1.2rem;
+        padding: 0;
+    }
+
+    .p-datatable .p-button.p-button-sm .p-button-icon {
+        font-size: 0.6rem;
+    }
+
+    /* Adjust column width for actions */
+    .p-datatable .p-column-header:last-child,
+    .p-datatable .p-datatable-tbody > tr > td:last-child {
+        width: 4rem;
+        min-width: 4rem;
+    }
+}
+
+.p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
+    padding: 0.3rem 0.5rem;
+}
+
+.p-datatable .p-button.p-button-text.p-button-sm {
+    padding: 0.2rem;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.p-datatable .p-button.p-button-text.p-button-sm .p-button-icon {
+    font-size: 0.8rem;
+}
+
+@media screen and (max-width: 960px) {
+    .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
+        padding: 0.5rem;
+    }
+    
+    .p-datatable[data-pc-name="datatable"] .p-datatable-tbody > tr > td > div {
+        text-align: left !important;
+    }
+}
+
+.p-datatable-centered .p-datatable-thead > tr > th {
+    text-align: center !important;
+    justify-content: center !important;
+}
+
+.p-datatable-centered .p-column-header-content {
+    justify-content: center !important;
+}

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
-import { FaUtensils, FaStore, FaClipboardList, FaChartLine } from 'react-icons/fa';
+import { FaUtensils, FaStore, FaClipboardList, FaChartLine, FaClock } from 'react-icons/fa';
 import MenuBar from '../../components/MenuBar';
 import axios from 'axios';
 import '../../styles/RestaurantAdminDashboard.css';
@@ -49,19 +49,25 @@ export default function RestaurantAdminDashboard() {
             title: 'Página do restaurante',
             description: 'Atualize informações e imagens da página do restaurante.',
             icon: <FaStore className="dashboard-icon" />,
-            path: '/restaurant/profile'  // Updated path
+            path: '/restaurant/profile'
         },
         {
             title: 'Gerenciar Cardápio',
             description: 'Adicione, edite ou remova itens do menu do seu restaurante.',
             icon: <FaUtensils className="dashboard-icon" />,
-            path: '/admin/cardapio'
+            path: '/restaurant/menu'
         },
         {
             title: 'Gerenciar Pedidos',
             description: 'Veja e atualize o status dos pedidos recebidos.',
             icon: <FaClipboardList className="dashboard-icon" />,
             path: '/admin/pedidos'
+        },
+        {
+            title: 'Horários de Funcionamento',
+            description: 'Configure os horários de funcionamento do seu restaurante.',
+            icon: <FaClock className="dashboard-icon" />,
+            path: '/restaurant/hours'
         },
         {
             title: 'Faturamento',

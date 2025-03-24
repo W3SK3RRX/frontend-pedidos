@@ -15,6 +15,7 @@ import RestaurantCreation from "./pages/Restaurant/RestaurantCreation";
 import RestaurantAdminDashboard from "./pages/Restaurant/RestaurantAdminDashboard";
 import RestaurantProfile from "./pages/Restaurant/RestaurantProfile";
 import MenuManagement from "./pages/Restaurant/MenuManagement";
+import RestaurantHours from "./pages/Restaurant/RestaurantHours";
 
 import CartPage from "./pages/Cart/CartPage";
 
@@ -43,6 +44,7 @@ function App() {
           <Route path="/restaurant/dashboard" element={<RestaurantAdminDashboard />} />
           <Route path="/restaurant/profile" element={<RestaurantProfile />} />
           <Route path="/restaurant/menu" element={<MenuManagement />} />
+          <Route path="/restaurant/hours" element={<RestaurantHours />} />
 
           <Route path="/cart" element={<CartPage />} />
       </Routes>
